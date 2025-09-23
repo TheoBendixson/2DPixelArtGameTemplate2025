@@ -1,0 +1,122 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		2E23979F2AC2981E00C492F6 /* MooselutionsAssetPacker */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2E2397A02AC2981E00C492F6 /* Build configuration list for PBXAggregateTarget "MooselutionsAssetPacker" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = MooselutionsAssetPacker;
+			productName = MooselutionsAssetPacker;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXFileReference section */
+		2E2397A32AC2984200C492F6 /* mac_asset_packer_main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = mac_asset_packer_main.mm; path = ../mac_asset_packer_main.mm; sourceTree = "<group>"; };
+		2E2397A42AC2985800C492F6 /* asset_packer_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = asset_packer_main.cpp; path = ../../asset_packer/asset_packer_main.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2E2397982AC2975500C492F6 = {
+			isa = PBXGroup;
+			children = (
+				2E2397A32AC2984200C492F6 /* mac_asset_packer_main.mm */,
+				2E2397A42AC2985800C492F6 /* asset_packer_main.cpp */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		2E2397992AC2975600C492F6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					2E23979F2AC2981E00C492F6 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 2E23979C2AC2975600C492F6 /* Build configuration list for PBXProject "MooselutionsAssetPacker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2E2397982AC2975500C492F6;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2E23979F2AC2981E00C492F6 /* MooselutionsAssetPacker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		2E23979D2AC2975600C492F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		2E23979E2AC2975600C492F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		2E2397A12AC2981E00C492F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N79LQXAXD6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2E2397A22AC2981E00C492F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N79LQXAXD6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2E23979C2AC2975600C492F6 /* Build configuration list for PBXProject "MooselutionsAssetPacker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E23979D2AC2975600C492F6 /* Debug */,
+				2E23979E2AC2975600C492F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2E2397A02AC2981E00C492F6 /* Build configuration list for PBXAggregateTarget "MooselutionsAssetPacker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E2397A12AC2981E00C492F6 /* Debug */,
+				2E2397A22AC2981E00C492F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2E2397992AC2975600C492F6 /* Project object */;
+}

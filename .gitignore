@@ -1,0 +1,10 @@
+build/
+*.xcuserdata
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcworkspace/xcshareddata/
+*.xcodeproj/xcshareddata/
+.DS_Store
+apple_environment.txt
+

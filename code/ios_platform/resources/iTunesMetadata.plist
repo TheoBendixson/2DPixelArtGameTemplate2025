@@ -1,0 +1,16 @@
+<plist version="1.0">
+<dict>
+    <key>bundle-id</key>
+    <string>com.company.game</string>
+    <key>app-name</key>
+    <string>GameName</string>
+    <key>version</key>
+    <string>1.0</string>
+    <key>primary-language</key>
+    <string>en</string>
+    <key>media-type</key>
+    <string>software</string>
+    <key>release-notes</key>
+    <string>Initial release</string>
+</dict>
+</plist>

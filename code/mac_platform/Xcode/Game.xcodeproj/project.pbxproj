@@ -1,0 +1,211 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		ACA22E7A26D33A1800A73D97 /* Game */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = ACA22E7B26D33A1800A73D97 /* Build configuration list for PBXAggregateTarget "Game" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = Game;
+			productName = Mooselutions;
+		};
+		CF69D4C32964C0C700B11153 /* Asset Packer */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = CF69D4C62964C0C700B11153 /* Build configuration list for PBXAggregateTarget "Asset Packer" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = "Asset Packer";
+			productName = "Mooselutions Asset Packer";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXFileReference section */
+		AC0AB1DB26D3DA4800C06B41 /* mac_file.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = mac_file.cpp; path = ../mac_file.cpp; sourceTree = "<group>"; };
+		AC1116D426D82272009FC29E /* osx_main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = osx_main.mm; path = ../osx_main.mm; sourceTree = "<group>"; };
+		AC28E9E52BB31EAA00345F68 /* game_sound.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = game_sound.cpp; path = ../../game_library/game_sound.cpp; sourceTree = "<group>"; };
+		AC6ECA882AADF445003C7AEC /* game_startup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = game_startup.cpp; path = ../../game_library/game_startup.cpp; sourceTree = "<group>"; };
+		CF1E63852CE3A657008FF8C5 /* game_sound_loading.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = game_sound_loading.cpp; path = ../../game_library/game_sound_loading.cpp; sourceTree = "<group>"; };
+		CF2C1A4C2AAA8D7F0005F48F /* shared_steam.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = shared_steam.cpp; path = ../../shared_platform_layer/shared_steam.cpp; sourceTree = "<group>"; };
+		CF330A252AC64CC30085F7B2 /* entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = entity.cpp; path = ../../game_library/entity.cpp; sourceTree = "<group>"; };
+		CFB0DF3B2AA7A49500113D65 /* game_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = game_main.cpp; path = ../../game_library/game_main.cpp; sourceTree = "<group>"; };
+		CFC044882CE3AE9800B99350 /* apple_sound.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = apple_sound.cpp; path = ../../shared_apple_platform/apple_sound.cpp; sourceTree = "<group>"; };
+		CFE6F5DD2CF798410028B98C /* game_texture_loading.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = game_texture_loading.cpp; path = ../../game_library/game_texture_loading.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		AC61E80626DD817A00C1227F /* Mac Platform */ = {
+			isa = PBXGroup;
+			children = (
+				CF2C1A4C2AAA8D7F0005F48F /* shared_steam.cpp */,
+				AC1116D426D82272009FC29E /* osx_main.mm */,
+				AC0AB1DB26D3DA4800C06B41 /* mac_file.cpp */,
+			);
+			name = "Mac Platform";
+			sourceTree = "<group>";
+		};
+		AC94A1302CBDA88D00A0057F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ACA22E7326D3396400A73D97 = {
+			isa = PBXGroup;
+			children = (
+				CFB0DF3C2AA7A4A600113D65 /* Game Library */,
+				CFC044872CE3AE7000B99350 /* Shared Apple Platform */,
+				AC61E80626DD817A00C1227F /* Mac Platform */,
+				AC94A1302CBDA88D00A0057F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CFB0DF3C2AA7A4A600113D65 /* Game Library */ = {
+			isa = PBXGroup;
+			children = (
+				CFB0DF3B2AA7A49500113D65 /* game_main.cpp */,
+				AC6ECA882AADF445003C7AEC /* game_startup.cpp */,
+				CF330A252AC64CC30085F7B2 /* entity.cpp */,
+				AC28E9E52BB31EAA00345F68 /* game_sound.cpp */,
+				CFE6F5DD2CF798410028B98C /* game_texture_loading.cpp */,
+				CF1E63852CE3A657008FF8C5 /* game_sound_loading.cpp */,
+			);
+			name = "Game Library";
+			sourceTree = "<group>";
+		};
+		CFC044872CE3AE7000B99350 /* Shared Apple Platform */ = {
+			isa = PBXGroup;
+			children = (
+				CFC044882CE3AE9800B99350 /* apple_sound.cpp */,
+			);
+			name = "Shared Apple Platform";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		ACA22E7426D3396400A73D97 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					ACA22E7A26D33A1800A73D97 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					CF69D4C32964C0C700B11153 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = ACA22E7726D3396400A73D97 /* Build configuration list for PBXProject "Game" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ACA22E7326D3396400A73D97;
+			productRefGroup = AC94A1302CBDA88D00A0057F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ACA22E7A26D33A1800A73D97 /* Game */,
+				CF69D4C32964C0C700B11153 /* Asset Packer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		ACA22E7826D3396400A73D97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		ACA22E7926D3396400A73D97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		ACA22E7C26D33A1800A73D97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N79LQXAXD6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		ACA22E7D26D33A1800A73D97 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N79LQXAXD6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		CF69D4C42964C0C700B11153 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N79LQXAXD6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CF69D4C52964C0C700B11153 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N79LQXAXD6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ACA22E7726D3396400A73D97 /* Build configuration list for PBXProject "Game" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACA22E7826D3396400A73D97 /* Debug */,
+				ACA22E7926D3396400A73D97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACA22E7B26D33A1800A73D97 /* Build configuration list for PBXAggregateTarget "Game" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACA22E7C26D33A1800A73D97 /* Debug */,
+				ACA22E7D26D33A1800A73D97 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CF69D4C62964C0C700B11153 /* Build configuration list for PBXAggregateTarget "Asset Packer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF69D4C42964C0C700B11153 /* Debug */,
+				CF69D4C52964C0C700B11153 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ACA22E7426D3396400A73D97 /* Project object */;
+}
