@@ -3,12 +3,11 @@
 ID3D11Buffer *
 SetupInstanceBuffer(ID3D11Device* D11Device, u32 InstanceCount, texture_draw_command_instance_buffer *GameInstanceBuffer)
 {
-    u32 InstanceBufferSize = sizeof(renderer_instance)*InstanceCount;
-    GameInstanceBuffer->Size = InstanceBufferSize;
+    u32 InstanceBufferSize = sizeof(texture_draw_command_instance_uniforms)*InstanceCount;
     GameInstanceBuffer->InstanceMax = InstanceCount;
-    GameInstanceBuffer->Instances = 
-        (renderer_instance *)VirtualAlloc(0, InstanceBufferSize, 
-                                          MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
+    GameInstanceBuffer->InstanceUniforms =
+        (texture_draw_command_instance_uniforms *)VirtualAlloc(0, InstanceBufferSize,
+                                                               MEM_RESERVE | MEM_COMMIT, PAGE_READWRITE);
 
     ID3D11Buffer *WindowsInstanceBuffer;
     {
@@ -19,7 +18,7 @@ SetupInstanceBuffer(ID3D11Device* D11Device, u32 InstanceCount, texture_draw_com
         InstanceBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
         D3D11_SUBRESOURCE_DATA Initial = {};
-        Initial.pSysMem = GameInstanceBuffer->Instances;
+        Initial.pSysMem = GameInstanceBuffer->InstanceUniforms;
         HRESULT HR = D11Device->CreateBuffer(&InstanceBufferDesc, &Initial, &WindowsInstanceBuffer);
         AssertHR(HR);
     }
