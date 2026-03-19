@@ -7,4 +7,5 @@ build/
 *.xcodeproj/xcshareddata/
 .DS_Store
 apple_environment.txt
+CLAUDE.md
 
