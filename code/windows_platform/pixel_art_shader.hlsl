@@ -15,11 +15,11 @@ struct PS_INPUT
 
 struct VS_INSTANCE
 {
-    float3 transformRow1    : TXROWONE;
-    float3 transformRow2    : TXROWTWO;
-    float3 transformRow3    : TXROWTHREE;
-    uint textureID          : TEXTUREID;
-    float alpha             : ALPHA;
+    float2 vMin      : VMIN;
+    float2 vMax      : VMAX;
+    float  Rotation  : ROTATION;
+    uint   textureID : TEXTUREID;
+    float  alpha     : ALPHA;
 };
 
 cbuffer cbuffer0 : register(b0)      // b0 = constant buffer bound to slot 0
@@ -35,15 +35,19 @@ cbuffer cbuffer1
 sampler sampler0 : register(s0);                
 Texture2DArray<float4> texture0 : register(t0);
 
-PS_INPUT vs(VS_INPUT input, VS_INSTANCE instance)                                                    
+PS_INPUT vs(VS_INPUT input, VS_INSTANCE instance)
 {
     PS_INPUT output;
-    float3x3 transformMatrix = float3x3(instance.transformRow1, 
-                                        instance.transformRow2, 
-                                        instance.transformRow3);
-    float3 positionVector = float3(input.pos, 1.0);
-    float3 transformedPosition = mul(positionVector, transformMatrix);
-    output.pos = float4(transformedPosition.xy, 0.f, 1.f);                               
+    float2 scale   = instance.vMax - instance.vMin;
+    float2 scaled  = input.pos * scale;
+    float  c       = cos(instance.Rotation);
+    float  s       = sin(instance.Rotation);
+    float2 rotated = float2(c * scaled.x + s * scaled.y,
+                           -s * scaled.x + c * scaled.y);
+    float2 center  = float2(instance.vMin.x + 0.5 * scale.x,
+                            (ViewportSize.y - instance.vMin.y) - 0.5 * scale.y);
+    float2 worldPos = rotated + center;
+    output.pos = float4(worldPos, 0.f, 1.f);
     output.pos.xy = (output.pos.xy / (ViewportSize / 2.0)) - 1;
     output.uv = input.uv;
     output.textureID = instance.textureID;

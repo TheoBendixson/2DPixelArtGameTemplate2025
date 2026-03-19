@@ -812,24 +812,24 @@ WinMain(HINSTANCE Instance,
                 offsetof(struct game_texture_vertex, UV), D3D11_INPUT_PER_VERTEX_DATA, 0 
             },
             {
-                "TXROWONE", 0, DXGI_FORMAT_R32G32B32_FLOAT, 1, 
-                offsetof(struct renderer_instance, TransformRow1), D3D11_INPUT_PER_INSTANCE_DATA, 1
+                "VMIN", 0, DXGI_FORMAT_R32G32_FLOAT, 1,
+                offsetof(texture_draw_command_instance_uniforms, vMin), D3D11_INPUT_PER_INSTANCE_DATA, 1
             },
             {
-                "TXROWTWO", 0, DXGI_FORMAT_R32G32B32_FLOAT, 1, 
-                offsetof(struct renderer_instance, TransformRow2), D3D11_INPUT_PER_INSTANCE_DATA, 1
+                "VMAX", 0, DXGI_FORMAT_R32G32_FLOAT, 1,
+                offsetof(texture_draw_command_instance_uniforms, vMax), D3D11_INPUT_PER_INSTANCE_DATA, 1
             },
             {
-                "TXROWTHREE", 0, DXGI_FORMAT_R32G32B32_FLOAT, 1, 
-                offsetof(struct renderer_instance, TransformRow3), D3D11_INPUT_PER_INSTANCE_DATA, 1
+                "ROTATION", 0, DXGI_FORMAT_R32_FLOAT, 1,
+                offsetof(texture_draw_command_instance_uniforms, Rotation), D3D11_INPUT_PER_INSTANCE_DATA, 1
             },
             {
-                "TEXTUREID", 0, DXGI_FORMAT_R32_UINT, 1, 
-                offsetof(struct renderer_instance, TextureID), D3D11_INPUT_PER_INSTANCE_DATA, 1 
+                "TEXTUREID", 0, DXGI_FORMAT_R32_UINT, 1,
+                offsetof(texture_draw_command_instance_uniforms, TextureID), D3D11_INPUT_PER_INSTANCE_DATA, 1
             },
             {
-                "ALPHA", 0, DXGI_FORMAT_R32_FLOAT, 1, 
-                offsetof(struct renderer_instance, Alpha), D3D11_INPUT_PER_INSTANCE_DATA, 1 
+                "ALPHA", 0, DXGI_FORMAT_R32_FLOAT, 1,
+                offsetof(texture_draw_command_instance_uniforms, Alpha), D3D11_INPUT_PER_INSTANCE_DATA, 1
             }
         };
 
@@ -1423,7 +1423,7 @@ WinMain(HINSTANCE Instance,
                 DeviceContext->VSSetShader(PixelArtVertexShader, NULL, 0);
                 DeviceContext->IASetVertexBuffers(0, 1, &WindowsVertexBuffer, &Stride, &Offset);
 
-                UINT InstanceStride = sizeof(struct renderer_instance);
+                UINT InstanceStride = sizeof(texture_draw_command_instance_uniforms);
                 UINT InstanceOffset = 0;
 
                 // Pixel Shader

@@ -25,9 +25,11 @@ typedef struct
 
 typedef struct
 {
-    matrix_float3x3 transform;
-    u32 textureID;
-    float alpha;
+    packed_float2 vMin;
+    packed_float2 vMax;
+    float         rotation;
+    u32           textureID;
+    float         alpha;
 } PixelArtShaderInstanceUniforms;
 
 typedef struct
@@ -55,13 +57,28 @@ pixelArtVertexShader(uint vertexID [[ vertex_id ]],
 
     PixelArtShaderVSInput in = vertexArray[vertexID];
     PixelArtShaderInstanceUniforms instanceUniforms = perInstanceUniforms[instanceID];
-    float3 transformedPosition = instanceUniforms.transform*float3(in.position, 1.0);
 
     // Get the viewport size and cast to float.
     float2 viewportSize = float2(*viewportSizePointer);
 
+    // Scale: map [-0.5, 0.5] quad verts to pixel-space dimensions
+    float2 scale = instanceUniforms.vMax - instanceUniforms.vMin;
+    float2 scaled = in.position * scale;
+
+    // Rotate
+    float c = cos(instanceUniforms.rotation);
+    float s = sin(instanceUniforms.rotation);
+    float2 rotated = float2(c * scaled.x + s * scaled.y,
+                           -s * scaled.x + c * scaled.y);
+
+    // Translate to quad center in Y-flipped screen space
+    float2 center = float2(instanceUniforms.vMin.x + 0.5 * scale.x,
+                           (viewportSize.y - instanceUniforms.vMin.y) - 0.5 * scale.y);
+    float2 worldPos = rotated + center;
+
+    // NDC conversion
     out.Position = vector_float4(0.0, 0.0, 0.0, 1.0);
-    out.Position.xy = (transformedPosition.xy / (viewportSize / 2.0)) - 1;
+    out.Position.xy = (worldPos / (viewportSize / 2.0)) - 1.0;
 
     out.TextureCoordinate = in.uv;
     out.TextureSize = float2(textureSize->Width, textureSize->Height);

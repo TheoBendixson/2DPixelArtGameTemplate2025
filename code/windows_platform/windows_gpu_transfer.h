@@ -33,7 +33,8 @@ TransferInstanceBufferToGPU(ID3D11DeviceContext* DeviceContext,
     HRESULT HR = DeviceContext->Map((ID3D11Resource*)WindowsInstanceBuffer, 0, 
                                      D3D11_MAP_WRITE_DISCARD, 0, &Mapped);
     AssertHR(HR);
-    memcpy(Mapped.pData, GameInstanceBuffer->Instances, GameInstanceBuffer->Size);
+    memcpy(Mapped.pData, GameInstanceBuffer->InstanceUniforms,
+           GameInstanceBuffer->InstanceCount * sizeof(texture_draw_command_instance_uniforms));
     DeviceContext->Unmap((ID3D11Resource*)WindowsInstanceBuffer, 0);
 }
 

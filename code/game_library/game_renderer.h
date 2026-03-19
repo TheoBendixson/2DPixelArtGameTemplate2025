@@ -29,10 +29,11 @@ struct game_texture_vertex
     v2 UV;
 };
 
-#if MACOS || IOS
 struct texture_draw_command_instance_uniforms
 {
-    matrix_float3x3 Transform;
+    v2  vMin;
+    v2  vMax;
+    r32 Rotation;
     u32 TextureID;
     r32 Alpha;
 };
@@ -43,7 +44,6 @@ struct texture_draw_command_instance_buffer
     u32 InstanceCount;
     u32 InstanceMax;
 };
-#endif
 
 struct game_texture_vertex_buffer
 {
@@ -52,27 +52,6 @@ struct game_texture_vertex_buffer
     u32 VertexCount;
     u32 Max;
 };
-
-#if WINDOWS
-
-struct renderer_instance
-{
-    r32 TransformRow1[3];
-    r32 TransformRow2[3];
-    r32 TransformRow3[3];
-    u32 TextureID;
-    r32 Alpha;
-};
-
-struct texture_draw_command_instance_buffer
-{
-    renderer_instance *Instances;
-    u32 Size;
-    u32 InstanceCount;
-    u32 InstanceMax;
-};
-
-#endif
 
 struct game_texture_draw_command
 {

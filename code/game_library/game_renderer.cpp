@@ -1,19 +1,3 @@
-struct y_component
-{
-    r32 Min;
-    r32 Max;
-};
-
-inline
-y_component InvertYAxis(int ViewportHeight, 
-                        r32 YMin, r32 YMax)
-{
-    y_component Result = {};
-    Result.Min = (r32)(ViewportHeight - YMin);
-    Result.Max = (r32)(ViewportHeight - YMax);
-    return (Result);
-}
-
 void
 PushTexturedRectangle(game_render_commands *RenderCommands, texture_atlas_type TextureAtlasType,
                       v2 vMin, v2 vMax, u32 TextureID, r32 Alpha, s32 ZLayer, r32 Rotation)
@@ -61,118 +45,24 @@ PushTexturedRectangle(game_render_commands *RenderCommands, texture_atlas_type T
                           Alpha, ZLayer, Rotation);
 }
 
-#if MACOS || IOS
-
-matrix_float3x3 
-GenerateTransformMatrix(v2 vMin, v2 vMax, y_component YComponent, r32 Rotation)
-{
-    r32 ScaleX = vMax.X - vMin.X;
-    r32 ScaleY = vMax.Y - vMin.Y; 
-
-    matrix_float3x3 Scale = (matrix_float3x3) {{
-        { ScaleX, 0,      0  },
-        { 0,      ScaleY, 0  },
-        { 0,      0,      1  },
-    }};
-
-    r32 TransX = vMin.X + 0.5f*ScaleX;
-    r32 TransY = YComponent.Min - 0.5f*ScaleY; 
-
-    matrix_float3x3 Translate = (matrix_float3x3) {{
-        { 1,        0,      0 },
-        { 0,        1,      0 },
-        { TransX,   TransY, 1 },
-    }};
-
-    matrix_float3x3 RotateZ = (matrix_float3x3) {{
-        { (r32)(cos(Rotation)), -(r32)(sin(Rotation)),   0,  },
-        { (r32)(sin(Rotation)), (r32)(cos(Rotation)),    0,  },
-        { 0,                    0,                       1   },
-    }};
-
-    return matrix_multiply(Translate, matrix_multiply(RotateZ, Scale));
-}
-
 void
 PlatformProcessTexturedRectangleDrawCommand(game_render_commands *RenderCommands, game_texture_draw_command Command)
 {
-    v2 vMin = Command.vMin;
-    v2 vMax = Command.vMax;
-
-    y_component YComponent = InvertYAxis(RenderCommands->ViewportHeight, vMin.Y, vMax.Y);
-
-    texture_draw_command_instance_buffer *InstanceBuffer = &RenderCommands->InstanceBuffer; 
+    texture_draw_command_instance_buffer *InstanceBuffer = &RenderCommands->InstanceBuffer;
 
     texture_draw_command_instance_uniforms *InstanceUniforms = InstanceBuffer->InstanceUniforms;
     texture_draw_command_instance_uniforms NewInstance = {};
 
-    NewInstance.Transform = GenerateTransformMatrix(vMin, vMax, YComponent, Command.Rotation);
+    NewInstance.vMin      = Command.vMin;
+    NewInstance.vMax      = Command.vMax;
+    NewInstance.Rotation  = Command.Rotation;
     NewInstance.TextureID = Command.TextureID;
-    NewInstance.Alpha = Command.Alpha;
+    NewInstance.Alpha     = Command.Alpha;
 
     InstanceUniforms[InstanceBuffer->InstanceCount] = NewInstance;
     InstanceBuffer->InstanceCount++;
     Assert(InstanceBuffer->InstanceCount < InstanceBuffer->InstanceMax);
 }
-
-#elif WINDOWS
-
-void
-PlatformProcessTexturedRectangleDrawCommand(game_render_commands *RenderCommands, game_texture_draw_command Command)
-{
-    v2 vMin = Command.vMin;
-    v2 vMax = Command.vMax;
-
-    y_component YComponent = InvertYAxis(RenderCommands->ViewportHeight, vMin.Y, vMax.Y);
-
-// MARK: Generate a transform matrix that scales and translates the geometry.
-    r32 ScaleX = vMax.X - vMin.X;
-    r32 ScaleY = vMax.Y - vMin.Y; 
-
-    matrix3x3 Scale = { ScaleX, 0,      0,      
-                        0,      ScaleY, 0,       
-                        0,      0,      1 };
-
-    r32 TransX = vMin.X + 0.5f*ScaleX;
-    r32 TransY = YComponent.Min - 0.5f*ScaleY; 
-
-    matrix3x3 Translate = { 1,      0,      0,
-                            0,      1,      0,
-                            TransX, TransY, 1 };
-
-    r32 Rotation = Command.Rotation;
-
-    matrix3x3 RotateZ = { (r32)(cos(Rotation)), -(r32)(sin(Rotation)),   0,  
-                          (r32)(sin(Rotation)), (r32)(cos(Rotation)),    0,  
-                          0,                    0,                       1 };
-
-    matrix3x3 Transform = RotateZ * Scale * Translate;
-
-    renderer_instance Instance = {};
-
-    Instance.TextureID = Command.TextureID;
-
-    Instance.TransformRow1[0] = Transform.m[0][0];
-    Instance.TransformRow1[1] = Transform.m[0][1];
-    Instance.TransformRow1[2] = Transform.m[0][2];
-
-    Instance.TransformRow2[0] = Transform.m[1][0];
-    Instance.TransformRow2[1] = Transform.m[1][1];
-    Instance.TransformRow2[2] = Transform.m[1][2];
-
-    Instance.TransformRow3[0] = Transform.m[2][0];
-    Instance.TransformRow3[1] = Transform.m[2][1];
-    Instance.TransformRow3[2] = Transform.m[2][2];
-
-    Instance.Alpha = Command.Alpha;
-
-    texture_draw_command_instance_buffer *InstanceBuffer = &RenderCommands->InstanceBuffer; 
-    InstanceBuffer->Instances[InstanceBuffer->InstanceCount] = Instance;
-    InstanceBuffer->InstanceCount += 1;
-    Assert(InstanceBuffer->InstanceCount < InstanceBuffer->InstanceMax);
-}
-
-#endif
 
 void 
 DrawMonospaceLineOfText(game_render_commands *RenderCommands, text_character_lookup_array *TextCharacters,
